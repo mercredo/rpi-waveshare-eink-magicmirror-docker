@@ -1,2 +1,3 @@
-data/magicmirror/config
+data/magicmirror/config/basepath.js
+data/magicmirror/config/config.js
 .env
