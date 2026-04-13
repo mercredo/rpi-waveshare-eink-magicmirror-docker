@@ -23,6 +23,9 @@ const init = async () => {
 
 const takeScreenshot = async () => {
     const browser = await puppeteer.launch( {
+        headless: true,
+        defaultViewport: null,
+        executablePath: '/usr/bin/chromium',
         args: [
             '--no-sandbox',
             '--disable-setui-sandbox'

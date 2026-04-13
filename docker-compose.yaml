@@ -8,6 +8,9 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: UTC
+      ## @armV8 architecture the docker image runs in electron mode by default
+      ## to prevent this, we need to override the scenario
+      MM_SCENARIO: server
     volumes:
     - ./data/magicmirror/config:/opt/magic_mirror/config
     - ./data/magicmirror/css:/opt/magic_mirror/css
