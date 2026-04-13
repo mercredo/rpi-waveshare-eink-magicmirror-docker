@@ -25,6 +25,8 @@ services:
     # volumes:
     # - ./data/app:/app/
     restart: unless-stopped
+    environment:
+      ENV GPIOZERO_PIN_FACTORY: lgpio
     devices:
     - /dev/gpiochip0:/dev/gpiochip0
     - /dev/gpiochip1:/dev/gpiochip1
