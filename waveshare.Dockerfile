@@ -43,7 +43,7 @@ COPY ./config.js /app/
 RUN python3 -m venv /app/waveshare
 ENV PATH="/app/waveshare/bin:$PATH"
 
-RUN pip3 install waveshare-epaper
+RUN pip3 install waveshare-epaper pillow
 
 # RUN . /app/waveshare/bin/activate
 
