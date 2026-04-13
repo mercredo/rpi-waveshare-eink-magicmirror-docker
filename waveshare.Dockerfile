@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y \
   xdg-utils
 
 RUN apt-get update \
-  && apt-get install -y python3 python3-pip python3-dev python3-venv python3-smbus python3-setuptools  
+  && apt-get install -y python3 python3-pip python3-pil python3-dev python3-venv \
+    python3-gpiozero python3-smbus python3-setuptools
 # RUN python3-rpi-lgpio && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /app \
