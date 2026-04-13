@@ -26,7 +26,12 @@ services:
     # - ./data/app:/app/
     restart: unless-stopped
     devices:
+    - /dev/gpiochip0:/dev/gpiochip0
+    - /dev/gpiochip1:/dev/gpiochip1
+    - /dev/gpiochip2:/dev/gpiochip2
     - /dev/gpiochip4:/dev/gpiochip4
+    - /dev/spidev0.0:/dev/spidev0.0
+    - /dev/spidev0.1:/dev/spidev0.1
     cap_add:
     - SYS_ADMIN
     networks:
