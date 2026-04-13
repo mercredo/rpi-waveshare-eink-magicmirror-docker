@@ -55,7 +55,7 @@ const takeScreenshot = async () => {
 };
 
 const sendToWaveshare = async () => {
-    const pythonProcess = await spawnSync('python3', [
+    const pythonProcess = await spawnSync('/app/waveshare/bin/python3', [
         '/app/waveshare/waveshare.py',
         cfg.displayType,
     ]);
