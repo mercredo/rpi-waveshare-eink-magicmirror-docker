@@ -19,7 +19,8 @@ def main():
 
     # is to be run by parent directory, which requires ..
     image = Image.open('/app/screenshot.png')
-    epd.display(epd.getbuffer(image),epd.getbuffer(Other))
+    #epd.display(epd.getbuffer(image),epd.getbuffer(Other))
+    epd.display(epd.getbuffer(image))
 
 if __name__ == '__main__':
     main()

@@ -28,18 +28,17 @@ RUN apt-get update \
   && apt-get install -y python3 python3-pip python3-pil python3-numpy python3-dev python3-venv \
     python3-spidev python3-gpiozero python3-smbus python3-setuptools
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-# gpiod libgpiod-devpython3-lgpio
 
-RUN mkdir -p /app \
+RUN mkdir -p /app/static \
     && chown -R node:node /app
 
-USER node
+# USER node
 
-COPY ./package.json /app/
+COPY ./src/package.json /app/
 RUN cd /app/ && npm install
 
-COPY ./index.js /app/
-COPY ./config.js /app/
+# COPY ./src/index.js /app/
+# COPY ./src/config.js /app/
 
 ## Create a python virtual environment
 ## and install necessary libs
@@ -48,6 +47,6 @@ ENV PATH="/app/waveshare/bin:$PATH"
 
 RUN pip3 install spidev gpiozero rpi-lgpio waveshare-epaper pillow
 
-COPY waveshare.py /app/waveshare
+# COPY ./src/waveshare/epaper.py /app/waveshare
 
 ENTRYPOINT [ "/usr/local/bin/node", "/app/index.js" ]

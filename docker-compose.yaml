@@ -3,7 +3,7 @@ services:
     image: karsten13/magicmirror:latest
     restart: unless-stopped
     ports:
-    - 8044:8080
+    - 8080:8080
     environment:
       PUID: 1000
       PGID: 1000
@@ -22,8 +22,8 @@ services:
     depends_on:
       magicmirror:
         condition: service_healthy
-    # volumes:
-    # - ./data/app:/app/
+    volumes:
+    - ./src:/app
     restart: unless-stopped
     environment:
       ENV GPIOZERO_PIN_FACTORY: lgpio

@@ -7,7 +7,9 @@ const { spawnSync } = require('child_process');
 
 const cfg = require('./config');
 
-const fileName = '/app/screenshot.png';
+const fileName = '/app/static/screenshot.png';
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 cron.schedule(cfg.cron, async () => {
 
@@ -35,13 +37,15 @@ const takeScreenshot = async () => {
 
     const page = await browser.newPage();
 
+    console.log('WH', cfg.displayWidth, cfg.displayHeight);
     await page.setViewport({
         width: cfg.displayWidth,
         height: cfg.displayHeight
     });
     await page.goto('http://magicmirror:8080', {waitUntil: 'networkidle2'}); //.catch(e => void 0)
 
-    // await sleep(cfg.waitInSeconds*1000);
+    await delay(cfg.waitInSeconds*1000)
+
     // await page.waitFor(cfg.waitInSeconds*1000);
 
 
@@ -56,7 +60,7 @@ const takeScreenshot = async () => {
 
 const sendToWaveshare = async () => {
     const pythonProcess = await spawnSync('/app/waveshare/bin/python3', [
-        '/app/waveshare/waveshare.py',
+        '/app/waveshare/epaper.py',
         cfg.displayType,
     ]);
     const result = pythonProcess.stdout?.toString()?.trim();
