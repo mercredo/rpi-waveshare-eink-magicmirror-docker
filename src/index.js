@@ -20,7 +20,7 @@ const init = async () => {
 
     await takeScreenshot();
 
-    // await sendToWaveshare();
+    await sendToWaveshare();
 }
 
 const takeScreenshot = async () => {
@@ -37,17 +37,15 @@ const takeScreenshot = async () => {
 
     const page = await browser.newPage();
 
-    console.log('WH', cfg.displayWidth, cfg.displayHeight);
     await page.setViewport({
         width: cfg.displayWidth,
         height: cfg.displayHeight
     });
     await page.goto('http://magicmirror:8080', {waitUntil: 'networkidle2'}); //.catch(e => void 0)
 
-    await delay(cfg.waitInSeconds*1000)
-
-    // await page.waitFor(cfg.waitInSeconds*1000);
-
+    if (!isNaN(cfg.waitInSeconds)) {
+        await delay(cfg.waitInSeconds*1000);
+    }
 
     await page.screenshot({path: fileName});
     
@@ -61,7 +59,7 @@ const takeScreenshot = async () => {
 const sendToWaveshare = async () => {
     const pythonProcess = await spawnSync('/app/waveshare/bin/python3', [
         '/app/waveshare/eink.py',
-        cfg.displayType,
+        cfg.displayType
     ]);
     const result = pythonProcess.stdout?.toString()?.trim();
     const error = pythonProcess.stderr?.toString()?.trim();
