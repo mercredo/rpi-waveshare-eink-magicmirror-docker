@@ -41,7 +41,7 @@ const takeScreenshot = async () => {
         width: cfg.displayWidth,
         height: cfg.displayHeight
     });
-    await page.goto('http://magicmirror:8080', {waitUntil: 'networkidle2'}); //.catch(e => void 0)
+    await page.goto('http://magicmirror:8080', {waitUntil: 'networkidle2'});
 
     if (!isNaN(cfg.waitInSeconds)) {
         await delay(cfg.waitInSeconds*1000);
@@ -52,7 +52,9 @@ const takeScreenshot = async () => {
     if (cfg.invertColor) {
         const img = await Jimp.read(fileName);
         await img.invert();
-        await img.quality(80).writeAsync(fileName);
+        await img.write(fileName);
+
+        delay(5*1000);
     }
 };
 

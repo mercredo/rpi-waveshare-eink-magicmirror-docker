@@ -16,7 +16,7 @@ var config = {
   "displayType": "epd7in5b_V2",
   "displayWidth": 800,
   "displayHeight": 480,
-  "waitInSeconds": 25,
+  "waitInSeconds": 10,
   "cron": "0 * * * *",
   // "timezone": "Europe/Berlin",
   "invertColor": true
