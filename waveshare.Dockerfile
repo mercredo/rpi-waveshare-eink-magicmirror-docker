@@ -44,6 +44,4 @@ ENV PATH="/app/waveshare/bin:$PATH"
 
 RUN pip3 install spidev gpiozero rpi-lgpio waveshare-epaper pillow
 
-# COPY ./src/waveshare/epaper.py /app/waveshare
-
 ENTRYPOINT [ "/usr/local/bin/node", "/app/index.js" ]
