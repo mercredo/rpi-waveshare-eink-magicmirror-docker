@@ -19,7 +19,7 @@ var config = {
   "waitInSeconds": 25,
   "cron": "0 * * * *",
   // "timezone": "Europe/Berlin",
-  "invertCorlor": true
+  "invertColor": true
 };
 
 if (typeof module !== "undefined") {module.exports = config;}

@@ -1,4 +1,7 @@
 data/magicmirror/config/basepath.js
 data/magicmirror/config/config.js
+data/magicmirror/modules
+data/magicmirror/css
 data/screenshot
+data/
 .env
