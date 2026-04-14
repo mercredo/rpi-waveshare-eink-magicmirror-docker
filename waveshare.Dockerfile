@@ -29,16 +29,13 @@ RUN apt-get update \
     python3-spidev python3-gpiozero python3-smbus python3-setuptools
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+COPY ./src /app
 RUN mkdir -p /app/static \
     && chown -R node:node /app
 
 # USER node
 
-COPY ./src/package.json /app/
 RUN cd /app/ && npm install
-
-# COPY ./src/index.js /app/
-# COPY ./src/config.js /app/
 
 ## Create a python virtual environment
 ## and install necessary libs
