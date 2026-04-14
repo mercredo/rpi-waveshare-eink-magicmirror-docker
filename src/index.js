@@ -60,7 +60,7 @@ const takeScreenshot = async () => {
 
 const sendToWaveshare = async () => {
     const pythonProcess = await spawnSync('/app/waveshare/bin/python3', [
-        '/app/waveshare/epaper.py',
+        '/app/waveshare/eink.py',
         cfg.displayType,
     ]);
     const result = pythonProcess.stdout?.toString()?.trim();

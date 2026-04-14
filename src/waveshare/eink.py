@@ -8,7 +8,7 @@ from PIL import Image
 logging.basicConfig(level=logging.DEBUG)
 
 def main():
-    epd = epaper.epaper('epd7in5_V2').EPD();
+    epd = epaper.epaper('epd7in5b_V2').EPD();
     
     logging.info("init and Clear")
     epd.init()
@@ -18,7 +18,7 @@ def main():
     Other = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
 
     # is to be run by parent directory, which requires ..
-    image = Image.open('/app/screenshot.png')
+    image = Image.open('/app/static/screenshot.png')
     #epd.display(epd.getbuffer(image),epd.getbuffer(Other))
     epd.display(epd.getbuffer(image))
 
