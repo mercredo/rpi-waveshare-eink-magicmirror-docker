@@ -3,5 +3,7 @@ data/magicmirror/config/config.js
 data/magicmirror/modules
 data/magicmirror/css
 data/screenshot
-data/
+data
+src/node_modules
+src/package-lock.json
 .env

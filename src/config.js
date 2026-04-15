@@ -13,12 +13,29 @@
  *  'epd7in5_V2_old', 'epd7in5b_HD', 'epd7in5b_V2', 'epd7in5b_V2_old', 'epd7in5bc']
  */
 var config = {
+  /**
+   * python script has not been tested
+   *  for other models than epd7in5b_V2
+   */
   "displayType": "epd7in5b_V2",
   "displayWidth": 800,
   "displayHeight": 480,
+  /**
+   * wait for DOM selectors and/or custom delay in seconds
+   *  before screen capturing
+   */
   "waitInSeconds": 10,
+  "waitForDom":[],
+  /**
+   * schedule your eink screen update script
+   * 
+   * I recommend to not use a refresh rate 
+   *  smaller than half an hour on low power devices
+   * due to increased visual distraction
+   * 
+   * default: every hour
+   */
   "cron": "0 * * * *",
-  // "timezone": "Europe/Berlin",
   "invertColor": true
 };
 

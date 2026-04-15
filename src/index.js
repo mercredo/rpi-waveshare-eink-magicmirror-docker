@@ -18,7 +18,7 @@ cron.schedule(cfg.cron, async () => {
 
 const init = async () => {
 
-    await takeScreenshot();
+    await takeScreenshot().then(() => {delay(2*1000)});
 
     await sendToWaveshare();
 }
@@ -30,7 +30,8 @@ const takeScreenshot = async () => {
         executablePath: '/usr/bin/chromium',
         args: [
             '--no-sandbox',
-            '--disable-setui-sandbox'
+            '--disable-setui-sandbox',
+            '--disable-gpu'
         ],
         defaultViewport: null
     });
@@ -41,20 +42,31 @@ const takeScreenshot = async () => {
         width: cfg.displayWidth,
         height: cfg.displayHeight
     });
-    await page.goto('http://magicmirror:8080', {waitUntil: 'networkidle2'});
+    
+    var waitForPromises = [];
+    if (Array.isArray(cfg.waitForDom) && cfg.waitForDom.length > 0) {
+        cfg.waitForDom.forEach(el => {
+            waitForPromises.push(page.waitForSelector(el, {visible: true}));
+        });
+
+        await Promise.all(waitForPromises).then(() => {
+            console.log(`All ${cfg.waitForDom.length} DOM selectors loaded`);
+        });
+    }    
 
     if (!isNaN(cfg.waitInSeconds)) {
-        await delay(cfg.waitInSeconds*1000);
+        await delay(cfg.waitInSeconds*1000).then(() => {
+            console.log(`Waited for ${cfg.waitInSeconds} seconds`)});
     }
 
-    await page.screenshot({path: fileName});
+    await page.screenshot({path: fileName}).then(() => {
+        console.log('Screen captured');
+    });
     
     if (cfg.invertColor) {
         const img = await Jimp.read(fileName);
         await img.invert();
         await img.write(fileName);
-
-        delay(5*1000);
     }
 };
 
