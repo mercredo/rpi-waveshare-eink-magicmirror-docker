@@ -42,6 +42,7 @@ const takeScreenshot = async () => {
         width: cfg.displayWidth,
         height: cfg.displayHeight
     });
+    await page.goto('http://magicmirror:8080', {waitUntil: 'networkidle2'});
     
     var waitForPromises = [];
     if (Array.isArray(cfg.waitForDom) && cfg.waitForDom.length > 0) {
