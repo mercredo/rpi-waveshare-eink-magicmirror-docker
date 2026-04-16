@@ -33,7 +33,8 @@ const takeScreenshot = async () => {
             '--disable-setui-sandbox',
             '--disable-gpu'
         ],
-        defaultViewport: null
+        defaultViewport: null,
+        timeout: 60000
     });
 
     const page = await browser.newPage();
@@ -69,6 +70,8 @@ const takeScreenshot = async () => {
         await img.invert();
         await img.write(fileName);
     }
+
+    browser.close();
 };
 
 const sendToWaveshare = async () => {
